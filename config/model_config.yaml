@@ -1,0 +1,10 @@
+checkpoints:
+  '1.5':
+    naive:
+      path: runwayml/stable-diffusion-v1-5
+  2.1_base:
+    naive:
+      path: stabilityai/stable-diffusion-2-1
+  XL_1.0:
+    naive:
+      path: stabilityai/stable-diffusion-xl-base-1.0

@@ -33,7 +33,14 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-I’m currently busy with my lessons, but I will release the code as soon as possible.
+### Monocular 3D object detection
+```
+#### For self-prototypes extraction
+python KITTI_s1_self_prototype_extraction.py
+
+#### For prototype-guided image generation
+python KITTI_s2_image_generation.py
+```
 
 
 ## Citation

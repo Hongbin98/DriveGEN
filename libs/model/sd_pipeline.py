@@ -1446,7 +1446,7 @@ class DriveGENSDPipeline(StableDiffusionPipeline):
                         cur_gsl_loss = compute_gsl_loss(data_samples_latent, latent_model_input[cond_control_ids], downscaled_bboxes, expansion_factor=0.1)
                         total_loss += cur_gsl_loss                
 
-                print(gsa_loss, total_loss)
+                # print(gsa_loss, total_loss)
 
                 temp_control_ids = None
                 if isinstance(total_loss, torch.Tensor):

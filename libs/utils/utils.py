@@ -2,7 +2,7 @@ import hashlib
 import io
 import os
 import re
-
+import json
 import PIL.Image
 import PIL.ImageOps
 import numpy as np
@@ -10,6 +10,25 @@ import requests
 import torch
 from PIL import Image
 from typing import Callable, Union
+
+
+NameMapping = {
+    'movable_object.barrier': 'barrier',
+    'vehicle.bicycle': 'bicycle',
+    'vehicle.bus.bendy': 'bus',
+    'vehicle.bus.rigid': 'bus',
+    'vehicle.car': 'car',
+    'vehicle.construction': 'construction_vehicle',
+    'vehicle.motorcycle': 'motorcycle',
+    'human.pedestrian.adult': 'pedestrian',
+    'human.pedestrian.child': 'pedestrian',
+    'human.pedestrian.construction_worker': 'pedestrian',
+    'human.pedestrian.police_officer': 'pedestrian',
+    'movable_object.trafficcone': 'traffic_cone',
+    'vehicle.trailer': 'trailer',
+    'vehicle.truck': 'truck'
+}
+
 
 def set_nested_item(dataDict, mapList, value):
     """Set item in nested dictionary"""
@@ -256,3 +275,37 @@ def get_text_prompts_generation(label_file_path, ood_type):
         "",
         "A photo with a simple background, best quality, extremely detailed."
     )
+
+#### load json files
+def load_json_data(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+
+#### load the annotations of bboxes in the nus json
+def read_and_scale_bboxes_nus(bboxes, condition_image):
+    box_dict = {value: [] for value in set(NameMapping.values())}
+
+    w_resized = 1600
+    h_resized = 896
+    
+    img_width, img_height = condition_image.size
+    
+    # 计算宽和高的缩放比例
+    scale_x = w_resized / img_width
+    scale_y = h_resized / img_height
+    
+
+    for bbox in bboxes:
+        category_name = bbox['category_name']
+        x1, y1, x2, y2 = map(int, bbox['bbox_corners'])
+
+        # scale the bbox
+        x1_resized = int(x1 * scale_x)
+        y1_resized = int(y1 * scale_y)
+        x2_resized = int(x2 * scale_x)
+        y2_resized = int(y2 * scale_y)
+
+        box_dict[category_name].append([x1_resized, y1_resized, x2_resized, y2_resized])
+
+    return box_dict

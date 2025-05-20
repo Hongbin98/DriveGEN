@@ -42,6 +42,14 @@ python KITTI_s1_self_prototype_extraction.py
 python KITTI_s2_image_generation.py
 ```
 
+### Multi-view 3D object detection
+```
+#### For self-prototypes extraction
+python nus_s1_self_prototype_extraction.py
+
+#### For prototype-guided image generation
+python nus_s2_image_generation.py
+```
 
 ## Citation
 If our DriveGEN method is helpful in your research, please consider citing our paper:

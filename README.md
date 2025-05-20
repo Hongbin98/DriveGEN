@@ -54,10 +54,10 @@ python nus_s2_image_generation.py
 ## Citation
 If our DriveGEN method is helpful in your research, please consider citing our paper:
 ```
-@inproceedings{lin2025drivegen,
+@article{lin2025drivegen,
   title={DriveGEN: Generalized and Robust 3D Detection in Driving via Controllable Text-to-Image Diffusion Generation},
   author={Lin, Hongbin and Guo, Zilu and Zhang, Yifan and Niu, Shuaicheng and Li, Yafeng and Zhang, Ruimao and Cui, Shuguang and Li, Zhen},
-  booktitle={CVPR},
+  journal={arXiv preprint arXiv:2503.11122},
   year={2025}
 }
 ```
